@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Teacher Dashboard - LearnArc{% endblock %}
+
+{% block head %}
+<!-- Link to Teacher Dashboard CSS -->
+<link rel="stylesheet" href="{{ url_for('static', filename='teacher_dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <h1>Welcome, {{ current_user.username }}</h1>
+    
+    <div class="info-box">
+        <h3>Classroom Details</h3>
+        <ul>
+            <li><strong>Classrooms Created:</strong> 3</li>
+            <li><strong>Students Enrolled:</strong> 50</li>
+            <li><strong>Assignments Given:</strong> 10</li>
+        </ul>
+    </div>
+
+    <div class="tabs"> 
+        <a href="{{ url_for('resources') }}" class="btn btn-info">📚 Resources</a>
+        <a href="{{ url_for('quizzes') }}" class="btn btn-warning">❓ Quizzes</a>
+        <a href="{{ url_for('doubt_forum') }}">💬 Doubt Forum</a>
+        <a href="{{ url_for('students') }}" class="btn btn-secondary">👥 Students</a>
+    </div>
+    <div class="dashboard-container">
+        <h1>My Created Classrooms</h1>
+    
+        <div id="classroom-list" class="classroom-list">
+        </div>
+    </div>
+    <script>
+        let createdClassrooms = [
+            {% for classroom in created_classrooms %}
+                { id: {{ classroom.id }}, name: "{{ classroom.name }}" }{% if not loop.last %},{% endif %}
+            {% endfor %}
+        ];
+    </script>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    let classroomList = document.getElementById("classroom-list");
+
+    if (createdClassrooms.length > 0) {
+        createdClassrooms.forEach(classroom => {
+            let classroomItem = document.createElement("div");
+            classroomItem.classList.add("classroom-item");
+            classroomItem.innerHTML = `
+                <h3>${classroom.name}</h3>
+                <a href="/assignments/${classroom.id}" class="view-assignments-btn">📘 View Assignments</a>
+            `;
+            classroomList.appendChild(classroomItem);
+        });
+    } else {
+        classroomList.innerHTML = "<p>You have not created any classrooms yet.</p>";
+    }
+});
+    </script>
+
+{% endblock %}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - LearnArc</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Student_dashboard.css') }}">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">🎓 LearnArc</div>
+        <div class="nav-links">
+            <a href="{{ url_for('dashboard') }}">My Classrooms</a>    
+            <a href="{{ url_for('resources') }}">📚 Resources</a>
+            <a href="{{ url_for('quizzes') }}">❓ Quizzes</a>
+            <a href="{{ url_for('doubt_forum') }}">💬 Doubt Forum</a>
+            <a href="{{ url_for('your_files') }}">📂 Your Files</a>
+        </div>
+        <div class="user-profile">
+            <button class="profile-btn" onclick="toggleDropdown()">
+                {{ current_user.username }} ▼
+            </button>
+            <div class="dropdown-menu" id="profileDropdown">
+                <a href="#">View Profile</a>
+                <a href="{{ url_for('logout') }}">Logout</a>
+            </div>
+        </div>
+    </nav>
+    <div class="join-classroom">
+        <h3>Join a Classroom</h3>
+        <form action="{{ url_for('join_classroom') }}" method="POST">
+            <input type="text" name="class_code" placeholder="Enter class code" required>
+            <button type="submit" class="btn btn-primary">Join</button>
+        </form>
+    </div>
+
+    <div class="dashboard-container">
+        <h1>My Joined Classrooms</h1>
+        
+        <div class="classroom-list">
+            {% if joined_classrooms %}
+                {% for classroom in joined_classrooms %}
+                    <div class="classroom-item">
+                        <h3>{{ classroom.name }}</h3>
+                        <p>{{ classroom.description }}</p>
+                        <a href="{{ url_for('assignments', class_id=classroom.id) }}">
+                            <button class="view-assignments-btn">📘 View Assignments</button>
+                        </a>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>You have not joined any classrooms yet.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <span>🎓 LearnArc</span>
+            </div>
+        </div>
+        <p>&copy; 2025 LearnArc, VIT Pune. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    let navbar = document.querySelector(".navbar");
+    if (navbar) {
+        navbar.style.backgroundColor = "rgb(119, 255, 0)"; // Set navbar color dynamically
+    }
+});
+        function toggleDropdown() {
+            document.getElementById("profileDropdown").classList.toggle("show");
+        }
+        window.onclick = function(event) {
+            if (!event.target.matches('.profile-btn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-menu");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        };
+    </script>
+</body>
+</html>

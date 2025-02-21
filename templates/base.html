@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}LearnArc{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Student_dashboard.css') }}">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">🎓 LearnArc</div>
+        <div class="nav-links">
+            <a href="{{ url_for('dashboard') }}">My Classrooms</a>
+            {% for classroom in joined_classrooms %}
+            <a href="{{ url_for('assignments', class_id=classroom.id) }}">📘 Assignments for {{ classroom.name }}</a>
+        {% endfor %}        
+            <a href="{{ url_for('resources') }}">📚 Resources</a>
+            <a href="{{ url_for('quizzes') }}">❓ Quizzes</a>
+            <a href="{{ url_for('doubt_forum') }}">💬 Doubt Forum</a>
+            <a href="{{ url_for('your_files') }}">📂 Your Files</a>
+        </div>
+        <div class="user-profile">
+            <button class="profile-btn" onclick="toggleDropdown()">
+                {{ current_user.username }} ▼
+            </button>
+            <div class="dropdown-menu" id="profileDropdown">
+                <a href="#">View Profile</a>
+                <a href="{{ url_for('logout') }}">Logout</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    let navbar = document.querySelector(".navbar");
+    if (navbar) {
+        navbar.style.backgroundColor = "rgb(119, 255, 0)"; // Set navbar color dynamically
+    }
+});
+    function toggleDropdown() {
+        document.getElementById("profileDropdown").classList.toggle("show");
+    }
+
+    window.onclick = function(event) {
+        if (!event.target.matches('.profile-btn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-menu");
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    };
+    </script>
+</body>
+</html>

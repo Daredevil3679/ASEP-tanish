@@ -1,0 +1,303 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    color:#E8F1FF;
+    background: #000000;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgb(119, 255, 0);
+    color: rgb(0, 0, 0);
+    padding: 15px 20px;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.nav-links a {
+    color: rgb(0, 0, 0);
+    margin: 0 15px;
+    text-decoration: none;
+}
+
+.user-profile {
+    cursor: pointer;
+}
+
+.dashboard-container {
+    color: #E8F1FF;
+    width: 80%;
+    margin: 30px auto;
+    padding: 20px;
+    background: rgb(0, 0, 0);
+    border-radius: 10px;
+    box-shadow: 2px 4px 15px rgb(255, 255, 255);
+}
+
+.info-box, .quick-stats {
+    background: #000000;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.code-box {
+    background: #DFF7D8;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.code-highlight {
+    font-weight: bold;
+    color: #007BFF;
+}
+
+.copy-btn {
+    background: #007BFF;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.tabs {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background: #4285F4;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.tab-btn.active {
+    background: #1A73E8;
+}
+
+.create-assignment-btn {
+    margin-top: 20px;
+    width: 100%;
+    background: #FFC107;
+    color: black;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.create-assignment-btn:hover {
+    background: #FFA000;
+}
+
+.join-classroom {
+    color: #E8F1FF;
+    margin: 20px 0;
+    padding: 15px;
+    background: #000000;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.join-classroom input {
+    padding: 10px;
+    width: 60%;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.join-classroom .btn {
+    background: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.join-classroom .btn:hover {
+    background: #45a049;
+}
+
+.file-upload-form {
+    margin-bottom: 20px;
+}
+
+.file-upload-form input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.file-upload-form button {
+    padding: 10px 15px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.file-upload-form button:hover {
+    background-color: #45a049;
+}
+
+.file-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.file-list li {
+    margin: 10px 0;
+    background: #f8f8f8;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.file-list a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.file-list .btn-danger {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.file-list .btn-danger:hover {
+    background-color: darkred;
+}
+
+.classroom-item {
+    color: #000000;
+    background: #FFFF00;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 15px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.view-assignments-btn {
+    background: #4CAF50;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.view-assignments-btn:hover {
+    background: #006805;
+    transform: scale(1.05);
+}
+
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4CAF50;
+    padding: 15px 20px;
+}
+
+/* User Profile Button */
+.profile-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.profile-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 10px;
+    background: white;
+    min-width: 150px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    z-index: 10;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.dropdown-menu a:hover {
+    background: #f1f1f1;
+}
+
+.show {
+    display: block;
+}
+
+footer {
+    background-color:rgb(119, 255, 0);
+    color: rgb(0, 0, 0);
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 30px;
+    position: relative;
+    width: 100%;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-logo span {
+    font-size: 1.5rem;
+    color: #000000;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+footer p {
+    font-size: 0.9rem;
+    margin-top: 8px;
+}

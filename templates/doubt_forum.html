@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<head>
+<link rel="stylesheet" href="{{ url_for('static', filename='doubt_forum.css') }}">
+</head>
+<div class="forum-container">
+    <h2>💬 Doubt Forum</h2>
+
+    <!-- Ask a Doubt Section (Students Only) -->
+    {% if current_user.role == 'student' %}
+    <div class="ask-doubt">
+        <h3>Ask a Doubt</h3>
+        <form action="{{ url_for('ask_doubt') }}" method="POST">
+            <textarea name="question" required placeholder="Enter your doubt here..."></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    {% endif %}
+
+    <!-- Display Doubts -->
+    <div class="doubt-list">
+        {% for doubt in doubts %}
+        <div class="doubt-item">
+            <p><strong>{{ doubt.student.username }} asked:</strong> {{ doubt.question }}</p>
+            
+            {% if doubt.answer %}
+            <p class="answer"><strong>Answer:</strong> {{ doubt.answer }}</p>
+            {% elif current_user.role == 'teacher' %}
+            <!-- Teachers Can Answer -->
+            <form action="{{ url_for('answer_doubt', doubt_id=doubt.id) }}" method="POST">
+                <textarea name="answer" required placeholder="Enter your answer here..."></textarea>
+                <button type="submit">Submit Answer</button>
+            </form>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

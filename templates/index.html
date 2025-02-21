@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnArc</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+    <button id="darkModeToggle" class="toggle-dark">🌙</button>
+
+    <div class="container">
+        <h1>Welcome to LearnArc</h1>
+        <p>Enhance your learning with a better, modern interface.</p>
+
+        <a href="{{ url_for('login') }}" class="btn btn-primary">Login</a>
+        <a href="{{ url_for('signup') }}" class="btn btn-secondary">Sign Up</a>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const toggleDarkMode = document.querySelector(".toggle-dark");
+            const body = document.body;
+        
+            // Check if dark mode is already enabled in localStorage
+            if (localStorage.getItem("darkMode") === "enabled") {
+                body.classList.add("dark-mode");
+            }
+        
+            // Toggle Dark Mode on Click
+            toggleDarkMode.addEventListener("click", function () {
+                body.classList.toggle("dark-mode");
+        
+                // Save dark mode preference in localStorage
+                if (body.classList.contains("dark-mode")) {
+                    localStorage.setItem("darkMode", "enabled");
+                } else {
+                    localStorage.setItem("darkMode", "disabled");
+                }
+            });
+        });
+        </script>
+        
+</body>
+</html>
